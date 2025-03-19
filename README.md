@@ -93,3 +93,16 @@ git stash apply <name> # Get changes from a specific stash
 > 6. Merge the changes
 > 7. Pull the merged changes into your local `main` branch
 > 8. Repeat from step 2
+
+---
+
+Another commands
+
+```bash
+# Revert file changes
+git restore <file>
+git checkout <file>
+
+# Alias
+git config --global alias.tree "git log --graph"
+```
