@@ -96,7 +96,7 @@ git stash apply <name> # Get changes from a specific stash
 
 ---
 
-Another commands
+# Another commands
 
 ```bash
 # Revert file changes
@@ -104,5 +104,14 @@ git restore <file>
 git checkout <file>
 
 # Alias
-git config --global alias.tree "git log --graph"
+git config --global alias.tree "log --graph"
+
+# Diff
+git diff # See changes
+```
+
+## .gitignore
+
+```text
+**/venv
 ```
