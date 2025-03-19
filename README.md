@@ -1,117 +1,250 @@
 # Git Tutorial
 
-# Git commands
+## 🔹 Git Configuration
 
 ```shell
-# Initial configure
-git config --global user.name <username>
-git config --global user.email <email>
+# Set global username and email
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 
-# Set default branch
-git config --global init.defaultBranch <branch>
+# Set default branch name
+git config --global init.defaultBranch main
 
-# Remove a configuration
+# Remove a specific configuration
 git config --global --unset <setting>
 
-# See configuration
+# View configuration settings
 git config --global --list
-git config --local --list
+```
 
-# Basic commands
+## 🔹 Basic Commands
+
+```shell
+# Initialize a new Git repository
 git init
-git add <file>
-git commit -m <message>
 
-# Check history
+# Stage files for commit
+git add <file>
+
+# Commit staged changes with a message
+git commit -m "Your commit message"
+```
+
+## 🔹 Checking History & Moving Between Commits
+
+```shell
+# View commit history
 git log
 
-# Move between commits (HEAD)
-git checkout <hash>
-git checkout <branch> # Back to last commit
-git checkout -f <branch> # Force back to last commit
+# Checkout a specific commit
+git checkout <commit-hash>
 
-# Remote repository
-git branch -M <branch> # Change branch to main
-git remote add origin <link> # Set remote repository
-git remote add <name> <link> # Set more than 1 repository
-git push -u origin main # Push to remote repository
+# Switch to another branch
+git checkout <branch>
 
-# ---
-
-# Branch
-git branch <name> # Create branch
-git checkout <branch> # Move to branch
-git checkout -b <name> # Create and move to branch
-git branch <name> <source-branch> # Create branch based on a specific branch
-
-# Remote branch
-git push --set-upstream origin <branch> # Sync local branch in remote repository
-git push -u origin <branch> # Sync local branch to remote
-git pull origin <branch> # Get changes from specific branch
-git pull # Shortcut to pull changes from origin in the current branch
-
-# Merge
-git merge <branch> # Merge changes "from" branch into the current branch
-
-# Reset
-git reset <hash> # Move to commit and move last commits changes in working directory (untracking)
-git reset --soft <hash> # Move to commit and keep last commits changes in stagging
-git reset --hard <hash> # Move to commit and delete all last commits changes
-
-git revert # Move to past commit but keeping previous commits
-
-# Stash
-git stash # Create a temporary copy of your changes
-git stash list # List saved stashes
-git stash apply <name> # Get changes from a specific stash
+# Force reset to last commit
+git checkout -f <branch>
 ```
 
-## Commit format
+## 🔹 Working with Remote Repositories
 
-> [!INFO] Recommendations
+```shell
+# Set up remote repository
+git remote add origin <repository-url>
+
+# Push changes to remote repository
+git push -u origin main
+
+# Add upstream repository (for forks)
+git remote add upstream <repository-url>
+```
+
+## 🔹 Branching
+
+```shell
+# Create a new branch
+git branch <branch-name>
+
+# Switch to an existing branch
+git checkout <branch>
+
+git checkout -b <branch-name> # Create and switch to a new branch
+
+git branch -d <branch-name> # Delete a branch
+
+# Alternative way to switch branches
+git switch <branch>
+git switch -c <branch-name> # Create and switch
+```
+
+## 🔹 Synchronizing with Remote Branch
+
+```shell
+# Push branch to remote repository
+git push --set-upstream origin <branch>
+
+# Pull latest changes from a branch
+git pull origin <branch>
+
+git fetch # Fetch updates without merging
+```
+
+## 🔹 Merging & Rebasing
+
+```shell
+# Merge another branch into the current branch
+git merge <branch>
+
+# Rebase (integrates commits more cleanly)
+git rebase <branch>
+```
+
+> **📝 Merge vs. Rebase:**
 >
-> - Your commits should answer this: "If applied to the codebase, this commit will ..." / "What will happen when I merge the branch containing this commit?"
-> - e.g. Upgrade the package by ..., fix thread allocation by ... (imperative)
+> - `git merge` creates a new merge commit.
+> - `git rebase` moves your commits on top of the latest remote branch, keeping history cleaner.
 
-## Pull Request
+## 🔹 Reset & Revert
 
-- Create a PR in your remote repository
-- Select from which branch to another branch
-- Select create
-- Select merge
-- Additionally, you can delete the old branch
+```shell
+# Reset to a previous commit (unstage changes)
+git reset <commit-hash>
 
-## Common Workflow
+# Keep staged changes but move HEAD
+git reset --soft <commit-hash>
 
-> [!INFO] Steps
->
-> 1. Clone the repository
-> 2. Create a new branch from the `main` or another branch
-> 3. Make your changes
-> 4. Push the branch to the remote repo
-> 5. Open Pull Request
-> 6. Merge the changes
-> 7. Pull the merged changes into your local `main` branch
-> 8. Repeat from step 2
+# Reset completely (delete changes)
+git reset --hard <commit-hash>
 
----
+# Create a new commit that undoes a previous commit
+git revert <commit-hash>
+```
 
-# Another commands
+## 🔹 Stashing
 
-```bash
-# Revert file changes
+```shell
+# Save changes temporarily
+git stash
+
+# List saved stashes
+git stash list
+
+# Apply last saved stash
+git stash pop
+
+# Apply a specific stash
+git stash apply stash@{index}
+
+# Remove a stash
+git stash drop
+```
+
+## 🔹 Commit Message Guidelines
+
+> - ✅ Use imperative tone: "Fix bug", "Add feature" instead of "Fixed bug".
+> - ✅ Keep messages concise and meaningful.
+> - ✅ Each commit should be self-contained.
+
+## 🔹 Pull Requests (PRs)
+
+1. Create a branch for your feature or fix.
+2. Push the branch to the remote repository.
+3. Open a Pull Request.
+4. Select the target branch (e.g., `main`).
+5. Merge the changes.
+6. Optionally, delete the branch.
+
+## 🔹 Common Git Workflow
+
+```shell
+# Clone a repository
+git clone <repository-url>
+
+# Create and switch to a new branch
+git checkout -b feature-branch
+
+# Work on changes, then stage and commit
+git add .
+git commit -m "Add feature"
+
+# Push to remote repository
+git push -u origin feature-branch
+
+# Create a Pull Request & Merge
+
+# Update local main branch after merge
+git checkout main
+git pull origin main
+
+# Delete local branch after merge
+git branch -d feature-branch
+```
+
+## 🔹 Other Useful Commands
+
+```shell
+# Restore a file to last committed state
 git restore <file>
-git checkout <file>
 
-# Alias
-git config --global alias.tree "log --graph"
+# Show differences between working directory and last commit
+git diff
 
-# Diff
-git diff # See changes
+# View commit history in tree format
+git log --graph --oneline --decorate
+
+# View all previous commits (even after reset)
+git reflog
 ```
 
-## .gitignore
+## 🔹 Git Ignore (`.gitignore`)
 
 ```text
+# Ignore virtual environments, logs, and system files
 **/venv
+*.log
+.DS_Store
+node_modules/
 ```
+
+## Git Flow
+
+**Git Flow** is a branching model for Git that defines a strict workflow for managing features, releases, and hotfixes.
+
+### 🔹 Branches in Git Flow
+
+- `main` → Always stable, used for production.
+- `develop` → Integration branch for ongoing development.
+- `feature/*` → Created from `develop` for new features.
+- `release/*` → Created from `develop` to prepare for a new release.
+- `hotfix/*` → Created from `main` to fix critical issues.
+
+### 🔄 Workflow Steps
+
+1. Create a `feature/*` branch from `develop`.
+2. Work on the feature, commit, and push changes.
+3. Merge `feature/*` into `develop` once complete.
+4. When ready to release, create a `release/*` branch from `develop`.
+5. Test and stabilize the release, then merge it into `main` and `develop`.
+6. If a critical bug is found, create a `hotfix/*` from `main`, fix it, and merge it back into `main` and `develop`.
+
+## GitHub Flow
+
+**GitHub Flow** is a simpler, more lightweight workflow designed for continuous deployment and collaboration.
+
+### 🔄 Workflow Steps
+
+1. Create a new branch from `main` for each feature or fix.
+2. Work on the branch, commit, and push changes.
+3. Open a **Pull Request (PR)** for code review.
+4. After approval, merge the PR into `main`.
+5. Deploy immediately after merging.
+
+| Feature              | Git Flow                   | GitHub Flow                |
+| -------------------- | -------------------------- | -------------------------- |
+| **Complexity**       | High                       | Low                        |
+| **Best for**         | Large projects             | Fast-paced development     |
+| **Main Branches**    | `main`, `develop`          | `main` only                |
+| **Feature Branches** | `feature/*`                | Short-lived branches       |
+| **Releases**         | Managed via `release/*`    | Directly from `main`       |
+| **Hotfixes**         | `hotfix/*` from `main`     | Direct fix in a new branch |
+| **Deployment**       | After a structured release | Continuous Deployment      |
