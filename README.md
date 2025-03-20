@@ -194,6 +194,10 @@ git log --graph --oneline --decorate
 
 # View all previous commits (even after reset)
 git reflog
+
+# Create aliases
+git config --global alias.tree "git log --graph --oneline --decorate"
+git tree
 ```
 
 ## 🔹 Git Ignore (`.gitignore`)
