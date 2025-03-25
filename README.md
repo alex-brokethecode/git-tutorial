@@ -198,6 +198,9 @@ git reflog
 # Create aliases
 git config --global alias.tree "git log --graph --oneline --decorate"
 git tree
+
+git config --globa alias.ac "!git add . && git commit -m!
+git ac
 ```
 
 ## 🔹 Git Ignore (`.gitignore`)
