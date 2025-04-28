@@ -1,6 +1,34 @@
 # Git Tutorial
 
-## 🔹 Git Configuration
+## Related Links
+
+- [Git Documentation](https://git-scm.com/docs)
+- [oh-my-zsh Git Plugin aliases](https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/README.md)
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Git Configuration](#git-configuration)
+- [Basic Commands](#basic-commands)
+- [Checking History & Moving Between Commits](#checking-history--moving-between-commits)
+- [Working with Remote Repositories](#working-with-remote-repositories)
+- [Branching](#branching)
+- [Synchronizing with Remote Branch](#synchronizing-with-remote-branch)
+- [Merging & Rebasing](#merging--rebasing)
+- [Reset & Revert](#reset--revert)
+- [Stashing](#stashing)
+- [Commit Message Guidelines](#commit-message-guidelines)
+- [Pull Requests (PRs)](#pull-requests-prs)
+- [Common Git Workflow](#common-git-workflow)
+- [Other Useful Commands](#other-useful-commands)
+- [Git Ignore (`.gitignore`)](#git-ignore-gitignore)
+- [Git Flow](#git-flow)
+  - [Branches in Git Flow](#branches-in-git-flow)
+  - [Workflow Steps](#-workflow-steps)
+- [GitHub Flow](#github-flow)
+  - [Workflow Steps](#-workflow-steps-1)
+
+## Git Configuration
 
 ```shell
 # Set global username and email
@@ -17,7 +45,7 @@ git config --global --unset <setting>
 git config --global --list
 ```
 
-## 🔹 Basic Commands
+## Basic Commands
 
 ```shell
 # Initialize a new Git repository
@@ -30,7 +58,7 @@ git add <file>
 git commit -m "Your commit message"
 ```
 
-## 🔹 Checking History & Moving Between Commits
+## Checking History & Moving Between Commits
 
 ```shell
 # View commit history
@@ -46,7 +74,7 @@ git checkout <branch>
 git checkout -f <branch>
 ```
 
-## 🔹 Working with Remote Repositories
+## Working with Remote Repositories
 
 ```shell
 # Set up remote repository
@@ -59,7 +87,7 @@ git push -u origin main
 git remote add upstream <repository-url>
 ```
 
-## 🔹 Branching
+## Branching
 
 ```shell
 # Create a new branch
@@ -77,7 +105,7 @@ git switch <branch>
 git switch -c <branch-name> # Create and switch
 ```
 
-## 🔹 Synchronizing with Remote Branch
+## Synchronizing with Remote Branch
 
 ```shell
 # Push branch to remote repository
@@ -89,7 +117,7 @@ git pull origin <branch>
 git fetch # Fetch updates without merging
 ```
 
-## 🔹 Merging & Rebasing
+## Merging & Rebasing
 
 ```shell
 # Merge another branch into the current branch
@@ -104,7 +132,7 @@ git rebase <branch>
 > - `git merge` creates a new merge commit.
 > - `git rebase` moves your commits on top of the latest remote branch, keeping history cleaner.
 
-## 🔹 Reset & Revert
+## Reset & Revert
 
 ```shell
 # Reset to a previous commit (unstage changes)
@@ -120,7 +148,7 @@ git reset --hard <commit-hash>
 git revert <commit-hash>
 ```
 
-## 🔹 Stashing
+## Stashing
 
 ```shell
 # Save changes temporarily
@@ -139,13 +167,13 @@ git stash apply stash@{index}
 git stash drop
 ```
 
-## 🔹 Commit Message Guidelines
+## Commit Message Guidelines
 
-> - ✅ Use imperative tone: "Fix bug", "Add feature" instead of "Fixed bug".
-> - ✅ Keep messages concise and meaningful.
-> - ✅ Each commit should be self-contained.
+> - Use imperative tone: "Fix bug", "Add feature" instead of "Fixed bug".
+> - Keep messages concise and meaningful.
+> - Each commit should be self-contained.
 
-## 🔹 Pull Requests (PRs)
+## Pull Requests (PRs)
 
 1. Create a branch for your feature or fix.
 2. Push the branch to the remote repository.
@@ -154,7 +182,7 @@ git stash drop
 5. Merge the changes.
 6. Optionally, delete the branch.
 
-## 🔹 Common Git Workflow
+## Common Git Workflow
 
 ```shell
 # Clone a repository
@@ -180,7 +208,7 @@ git pull origin main
 git branch -d feature-branch
 ```
 
-## 🔹 Other Useful Commands
+## Other Useful Commands
 
 ```shell
 # Restore a file to last committed state
@@ -203,7 +231,7 @@ git config --globa alias.ac "!git add . && git commit -m!
 git ac
 ```
 
-## 🔹 Git Ignore (`.gitignore`)
+## Git Ignore (`.gitignore`)
 
 ```text
 # Ignore virtual environments, logs, and system files
@@ -217,7 +245,7 @@ node_modules/
 
 **Git Flow** is a branching model for Git that defines a strict workflow for managing features, releases, and hotfixes.
 
-### 🔹 Branches in Git Flow
+### Branches in Git Flow
 
 - `main` → Always stable, used for production.
 - `develop` → Integration branch for ongoing development.
@@ -225,7 +253,7 @@ node_modules/
 - `release/*` → Created from `develop` to prepare for a new release.
 - `hotfix/*` → Created from `main` to fix critical issues.
 
-### 🔄 Workflow Steps
+### Workflow Steps
 
 1. Create a `feature/*` branch from `develop`.
 2. Work on the feature, commit, and push changes.
@@ -238,7 +266,7 @@ node_modules/
 
 **GitHub Flow** is a simpler, more lightweight workflow designed for continuous deployment and collaboration.
 
-### 🔄 Workflow Steps
+### Workflow Steps
 
 1. Create a new branch from `main` for each feature or fix.
 2. Work on the branch, commit, and push changes.
